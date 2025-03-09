@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 .enemy {
   background-color: black;
   color: blanchedalmond;
