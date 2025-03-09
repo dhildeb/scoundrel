@@ -92,7 +92,7 @@ function App() {
             <span className='pl-1 w-5 absolute rounded-2xl top-1/4 left-1/3 text-white bg-black'>
             {card.value}
             </span>
-            <img className='object-contain w-20 max-w-20' src={`src/assets/${card.type}.png`} />
+            <img className='object-contain w-20 max-w-20' src={`./assets/${card.type}.png`} />
           </div>
         ))}
       </div>
