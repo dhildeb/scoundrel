@@ -12,3 +12,7 @@
 .potion {
   background-color: red;
 }
+
+.sword {
+  cursor: url('./assets/sword-icon.png') 45 5, auto !important;
+}
