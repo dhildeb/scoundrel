@@ -88,7 +88,7 @@ function App() {
       <div className='text-3xl text-white absolute top-4 right-4'>Rooms: {Math.ceil(remainingRooms.length/4)}</div>
       <div id='dungeon' className={health <= 0 ? 'hidden' : 'w-2xs size-24 flex justify-between'}>
         {dungeon.map((card: Card) => (
-          <div key={card.id} className={clsx('relative', card.type !== 'enemy' && 'cursor-pointer', (card.type === 'enemy' && ((currentWeapon?.durabilitiy || 0) < card.value || useBareHands)) && 'cursor-grabbing', (card.type === 'enemy' && (currentWeapon?.durabilitiy || 0) > card.value) && !useBareHands && 'sword')} onClick={() => handleEncounter(card)}>
+          <div key={card.id} className={clsx('relative', card.type !== 'enemy' && 'cursor-pointer', (card.type == 'enemy' && ((currentWeapon?.durabilitiy || 0) < card.value || useBareHands)) && 'cursor-grabbing', (card.type == 'enemy' && (currentWeapon?.durabilitiy || 0) > card.value) && !useBareHands && 'sword')} onClick={() => handleEncounter(card)}>
             <span className='pl-1 w-5 absolute rounded-2xl top-1/4 left-1/3 text-white bg-black'>
             {card.value}
             </span>
