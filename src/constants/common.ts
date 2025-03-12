@@ -61,6 +61,8 @@ export const characterList = [
   classes.blacksmith
 ]
 
+
+// Ideas: boss card power = 15, hp-1 every room
 export const classDescription = {
   [classes.none]: 'No buffs or disadvantages',
   [classes.berserker]: 'Buff: +2 to bare handed attacks, Disadvantages: cannot run from room with all enemies',
