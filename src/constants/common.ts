@@ -46,3 +46,24 @@ export const deck: Card[] = [
   { id: 43, type: 'enemy', value: 14 },
   { id: 44, type: 'enemy', value: 14 },
 ]
+
+export enum classes {
+  none = 'None',
+  berserker = 'Berserker',
+  healer = 'Healer',
+  blacksmith = 'Blacksmith'
+}
+
+export const characterList = [
+  classes.none,
+  classes.berserker,
+  classes.healer,
+  classes.blacksmith
+]
+
+export const classDescription = {
+  [classes.none]: 'No buffs or disadvantages',
+  [classes.berserker]: 'Buff: +2 to bare handed attacks, Disadvantages: cannot run from room with all enemies',
+  [classes.healer]: 'Buff: +1 hp every room, Disadvantages: max hp -2',
+  [classes.blacksmith]: 'Buff: +2 weapon durability every room, Disadvantages: potions 1/2 heal',
+}
