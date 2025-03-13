@@ -29,7 +29,7 @@ function App() {
     const getCount = dungeon.length > 0 ? 3 : 4
     const newRoom = [...dungeon, ...remainingRooms.splice(0, getCount)]
     setDungeon(newRoom)
-    const allEnemies = newRoom.filter((card) => card.type === 'enemy').length === 0
+    const allEnemies = newRoom.filter((card) => card.type === 'enemy').length === 4
     setCanRun(character === classes.berserker && allEnemies ? false : true)
     switch(character) {
       case classes.healer:
