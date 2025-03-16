@@ -17,7 +17,7 @@ function App() {
   const [remainingRooms, setRemainingRooms] = useState<Card[]>([...deck.sort(() => 0.5 - Math.random())])
   const [dungeon, setDungeon] = useState<Card[]>([])
   const [currentWeapon, setCurrentWeapon] = useState<Weapon>()
-  const [maxHP, setMaxHP] = useState<number>(200)
+  const [maxHP, setMaxHP] = useState<number>(20)
   const [health, setHealth] = useState<number>(maxHP)
   const [canRun, setCanRun] = useState<boolean>(true)
   const [useBareHands, setUseBareHands] = useState<boolean>(false)
