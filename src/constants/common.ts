@@ -67,5 +67,5 @@ export const classDescription = {
   [classes.none]: 'No buffs or disadvantages',
   [classes.berserker]: 'Buff: +2 to bare handed attacks, Disadvantages: cannot run from room with all enemies',
   [classes.healer]: 'Buff: +1 hp every room, Disadvantages: max hp -2',
-  [classes.blacksmith]: 'Buff: +2 weapon durability every room, Disadvantages: potions 1/2 heal',
+  [classes.blacksmith]: 'Buff: last enemies power or +2 weapon durability every room, Disadvantages: potions 1/2 heal',
 }

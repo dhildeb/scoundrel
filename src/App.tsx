@@ -24,6 +24,7 @@ function App() {
   const [endText, setEndText] = useState<string>()
   const [character, setCharacter] = useState<classes>()
   const [wins, setWins] = useState<number>(0)
+  const [enemyHistory, setEnemyHistory] = useState<number[]>([])
 
   const ExploreDungeon = () => {
     const getCount = dungeon.length > 0 ? 3 : 4
@@ -37,7 +38,9 @@ function App() {
         break
       case classes.blacksmith:
         if(currentWeapon){
-          setCurrentWeapon({power: currentWeapon.power, durabilitiy: currentWeapon.durabilitiy+2 > 15 ? 15 : currentWeapon.durabilitiy+2})
+          const recharge = enemyHistory.pop() || 2
+          setCurrentWeapon({power: currentWeapon.power, durabilitiy: currentWeapon.durabilitiy+recharge > 15 ? 15 : currentWeapon.durabilitiy+recharge})
+          setEnemyHistory(enemyHistory)
         }
       break
     }
@@ -48,6 +51,7 @@ function App() {
     switch(card.type){
       case 'weapon':
         setCurrentWeapon({power: card.value, durabilitiy: 15})
+        setEnemyHistory([])
         break;
       case 'potion':
          healing = character === classes.blacksmith ? card.value/2 : card.value 
@@ -57,6 +61,7 @@ function App() {
         if(currentWeapon && !useBareHands && currentWeapon.durabilitiy > card.value){
           setCurrentWeapon({power: currentWeapon.power, durabilitiy: card.value})
           setHealth(card.value - currentWeapon.power > 0 ? health-(card.value - currentWeapon.power) : health)
+          setEnemyHistory([...enemyHistory, card.value])
         }else{
           const dmg = character === classes.berserker ? card.value-2 : card.value
           setHealth(health-dmg)
@@ -117,6 +122,15 @@ function App() {
     }
   }
 
+  const getCardDisplay = (card: Card) => {
+    const reducePotion = character === classes.blacksmith && card.type === 'potion'
+    return (
+      <span className={clsx('pl-1 w-5 absolute rounded-2xl top-1/4 left-1/3 bg-black', reducePotion ? 'text-red-800' : 'text-white ')}>
+      {reducePotion ? card.value/2 : card.value}
+      </span>
+    )
+  }
+
   useEffect(() => {
     if(dungeon.length < 2 && remainingRooms.length > 0){
       ExploreDungeon()
@@ -146,9 +160,7 @@ function App() {
         <div id='dungeon' className={health <= 0 ? 'hidden' : 'w-2xs size-24 flex justify-between'}>
           {dungeon.map((card: Card) => (
             <div key={card.id} className={clsx('relative', card.type !== 'enemy' && 'cursor-pointer', (card.type == 'enemy' && ((currentWeapon?.durabilitiy || 0) < card.value || useBareHands)) && 'cursor-grabbing', (card.type == 'enemy' && (currentWeapon?.durabilitiy || 0) > card.value) && !useBareHands && 'sword')} onClick={() => handleEncounter(card)}>
-              <span className='pl-1 w-5 absolute rounded-2xl top-1/4 left-1/3 text-white bg-black'>
-              {card.value}
-              </span>
+              {getCardDisplay(card)}
               <img className='object-contain w-20 max-w-20' src={`./assets/${card.type}.png`} />
             </div>
           ))}
